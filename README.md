@@ -1,0 +1,2 @@
+# WebAssemblyGolangExample
+WebAssembly golang example.
