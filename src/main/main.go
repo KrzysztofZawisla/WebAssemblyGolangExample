@@ -24,6 +24,7 @@ func registerCallbacks() {
 	js.Global().Set("wasmMultiply", js.Func(wasmMultiply))
 	js.Global().Set("wasmHash", js.Func(wasmHash))
 	js.Global().Set("wasmMathRandom", js.Func(wasmMathRandom))
+	js.Global().Set("wasmDivide", js.Func(wasmDivide))
 }
 
 var wasmAdd js.Func = js.FuncOf(func(this js.Value, args []js.Value) interface{} {
@@ -55,6 +56,17 @@ var wasmMultiply js.Func = js.FuncOf(func(this js.Value, args []js.Value) interf
 	var output int = args[0].Int()
 	for i := 1; i<len(args); i++ {
 		output *= args[i].Int()
+	}
+	return output
+})
+
+var wasmDivide js.Func = js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+	if len(args) == 0 {
+		return nil
+	}
+	var output int = args[0].Int()
+	for i := 1; i<len(args); i++ {
+		output /= args[i].Int()
 	}
 	return output
 })
